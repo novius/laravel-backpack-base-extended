@@ -25,21 +25,22 @@
           <!-- ======================================= -->
           <li class="header">{{ trans('backpack::base.user') }}</li>
 
-          <li class="treeview">
-            <a href="#"><i class="fa fa-cogs"></i> <span>{{ trans('backpackextended::base.switch_language') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-            <ul class="treeview-menu admin-language-switcher">
-                <?php $i = 0 ?>
-              @foreach(config('backpack.crud.locales') as $localeCode => $localLabel)
-                @if($localeCode !== App::getLocale())
-                  <li>
-                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ Request::url() }}?admin_locale={{ $localeCode }}">
-                      {{ $localLabel }}
-                    </a>
-                  </li>
-                @endif
-              @endforeach
-            </ul>
-          </li>
+          @if (count(config('backpack.crud.locales')) > 1)
+            <li class="treeview">
+              <a href="#"><i class="fa fa-cogs"></i> <span>{{ trans('backpackextended::base.switch_language') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu admin-language-switcher">
+                @foreach(config('backpack.crud.locales') as $localeCode => $localLabel)
+                  @if($localeCode !== App::getLocale())
+                    <li>
+                      <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ Request::url() }}?admin_locale={{ $localeCode }}">
+                        {{ $localLabel }}
+                      </a>
+                    </li>
+                  @endif
+                @endforeach
+              </ul>
+            </li>
+          @endif
 
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}"><i class="fa fa-sign-out"></i> <span>{{ trans('backpack::base.logout') }}</span></a></li>
         </ul>
