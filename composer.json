@@ -1,5 +1,5 @@
 {
-    "name": "novius/backpack-crud-extended",
+    "name": "novius/laravel-backpack-base-extended",
     "description": "This packages extends Backpack\\Base",
     "type": "library",
     "license": "AGPL v3",
