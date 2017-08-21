@@ -1,0 +1,22 @@
+{
+    "name": "novius/backpack-crud-extended",
+    "description": "This packages extends Backpack\\Base",
+    "type": "library",
+    "license": "AGPL v3",
+    "authors": [
+        {
+            "name": "Julien Guyomard",
+            "email": "guyomard@novius.fr"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "backpack/base": "^0.7",
+        "laravel/framework": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Novius\\Backpack\\Base\\": "src"
+        }
+    }
+}
