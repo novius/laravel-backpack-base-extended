@@ -13,5 +13,4 @@ class AdminController extends \Backpack\Base\app\Http\Controllers\AdminControlle
 
         $this->middleware('adminLocalFromCookie');
     }
-
 }

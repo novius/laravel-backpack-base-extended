@@ -75,5 +75,4 @@ class BaseServiceProvider extends BackpackBaseServiceProvider
 
         $this->loadRoutesFrom($routeFilePathInUse);
     }
-
 }
