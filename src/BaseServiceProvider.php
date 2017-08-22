@@ -4,7 +4,7 @@ namespace Novius\Backpack\Base;
 
 use Backpack\Base\BaseServiceProvider as BackpackBaseServiceProvider;
 use Illuminate\Routing\Router;
-use Novius\Backpack\Base\Http\Middleware\LocaleFromCookie;
+use Novius\Backpack\Base\Http\Middleware\Admin;
 use Route;
 
 class BaseServiceProvider extends BackpackBaseServiceProvider
@@ -51,9 +51,7 @@ class BaseServiceProvider extends BackpackBaseServiceProvider
 
     public function registerAdminMiddleware(Router $router)
     {
-        parent::registerAdminMiddleware($router);
-
-        Route::aliasMiddleware('adminLocalFromCookie', LocaleFromCookie::class);
+        Route::aliasMiddleware('admin', Admin::class);
     }
 
     /**
