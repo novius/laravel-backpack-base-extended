@@ -5,8 +5,8 @@
     "license": "AGPL v3",
     "authors": [
         {
-            "name": "Julien Guyomard",
-            "email": "guyomard@novius.fr"
+            "name": "Tony Botalla",
+            "email": "botalla@novius.fr"
         }
     ],
     "require": {
@@ -14,9 +14,17 @@
         "backpack/base": "^0.7",
         "laravel/framework": ">=5.4"
     },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "~2.4.0"
+    },
     "autoload": {
         "psr-4": {
             "Novius\\Backpack\\Base\\": "src"
         }
+    },
+    "scripts": {
+        "lint" : [
+            "php-cs-fixer fix --dry-run --config .php_cs -vv --diff --allow-risky=yes"
+        ]
     }
 }
