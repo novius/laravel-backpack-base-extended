@@ -8,13 +8,13 @@ This package extends [Backpack/Base](https://github.com/Laravel-Backpack/Base). 
 In `config/app.php`, replaces
 
 ```php?start_inline=1
-Backpack\CRUD\CrudServiceProvider::class,
+Backpack\Base\BaseServiceProvider::class,
 ```
 
 by
 
 ```php?start_inline=1
-Novius\Backpack\CRUD\CrudServiceProvider::class,
+Novius\Backpack\Base\BaseServiceProvider::class,
 ```
 
 Launch these commands
