@@ -7,19 +7,19 @@ This package extends [Backpack/Base](https://github.com/Laravel-Backpack/Base). 
 
 In `config/app.php`, replaces
 
-```php?start_inline=1
+```
 Backpack\Base\BaseServiceProvider::class,
 ```
 
 by
 
-```php?start_inline=1
+```
 Novius\Backpack\Base\BaseServiceProvider::class,
 ```
 
 Launch these commands
 
-```php?start_inline=1
+```
 php artisan vendor:publish --provider="Novius\Backpack\Base\BaseServiceProvider" --tag="lang"
 php artisan vendor:publish --provider="Novius\Backpack\Base\BaseServiceProvider" --tag="views" --force
 php artisan vendor:publish --provider="Novius\Backpack\Base\BaseServiceProvider" --tag="routes"
