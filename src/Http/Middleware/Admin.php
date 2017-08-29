@@ -3,6 +3,7 @@
 namespace Novius\Backpack\Base\Http\Middleware;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class Admin
 {
@@ -14,7 +15,7 @@ class Admin
      * @param  string|null $guard
      * @return mixed
      */
-    public function handle($request, \Closure $next, $guard = null)
+    public function handle(Request $request, \Closure $next, $guard = null)
     {
         // Keep code from : \Backpack\Base\app\Http\Middleware\Admin
         if (Auth::guard($guard)->guest()) {
