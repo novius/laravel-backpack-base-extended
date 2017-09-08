@@ -2,12 +2,12 @@
 
 namespace Novius\Backpack\Base;
 
-use Backpack\Base\BaseServiceProvider as BackpackBaseServiceProvider;
 use Illuminate\Routing\Router;
+use Illuminate\Support\ServiceProvider;
 use Novius\Backpack\Base\Http\Middleware\Admin;
 use Route;
 
-class BaseServiceProvider extends BackpackBaseServiceProvider
+class BaseServiceProvider extends ServiceProvider
 {
     public $routeFilePath = '/../routes/backpack/base.php';
 
@@ -26,26 +26,31 @@ class BaseServiceProvider extends BackpackBaseServiceProvider
          * - vendor/novius/laravel-backpack-base-extended/resources/views/foo.blade.php
          * - vendor/backpack/base/resources/views/foo.blade.php
          */
-        $this->loadViewsFrom(resource_path('views/vendor/backpack/base'), 'backpack');
-        $this->loadViewsFrom(realpath(__DIR__.'/../resources/views'), 'backpack');
-
-        parent::boot($router);
-
-        // Add language file for features
-        $this->loadTranslationsFrom(realpath(__DIR__.'/../resources/lang'), 'backpackextended');
-        $this->publishes([__DIR__.'/../resources/lang' => resource_path('lang/vendor/backpackextended')], 'lang');
-
-        // Allow to publish overrided views (use --force with vendor:publish command)
-        $this->publishes([__DIR__.'/../resources/views' => resource_path('views/vendor/backpack/base')], 'views');
-
-        $this->publishes([__DIR__.'/../routes' => base_path().'/routes'], 'routes');
+        $this->app['view']->prependNamespace('backpack', realpath(dirname(__DIR__).'/resources/views'));
+        $this->app['view']->prependNamespace('backpack', resource_path('views/vendor/backpack/base'));
 
         /*
          * Add a new namespace "backpackbase", to allow bypassing overrided views
          * For instance, you can called an original backpack view using "backpackbase::foo"
          */
-        $this->loadViewsFrom(realpath(dirname(__DIR__, 3).'/backpack/base/src/resources/views'), 'backpackbase');
+        $this->loadViewsFrom(dirname(__DIR__, 3).'/backpack/base/src/resources/views', 'backpackbase');
 
+        /*
+         * Translations for this package
+         */
+        $this->loadTranslationsFrom(dirname(__DIR__).'/resources/lang', 'backpackextended');
+
+        /*
+         * Publish overrided views, langs & routes
+         * To overrides your views, use --force with vendor:publish command
+         */
+        $this->publishes([__DIR__.'/../resources/views' => resource_path('views/vendor/backpack/base')], 'views');
+        $this->publishes([__DIR__.'/../resources/lang' => resource_path('lang/vendor/backpackextended')], 'lang');
+        $this->publishes([__DIR__.'/../routes' => base_path().'/routes'], 'routes');
+
+        /*
+         * Override Admin Middleware
+         */
         $this->registerAdminMiddleware($this->app->router);
     }
 
@@ -72,5 +77,16 @@ class BaseServiceProvider extends BackpackBaseServiceProvider
         }
 
         $this->loadRoutesFrom($routeFilePathInUse);
+    }
+
+    /**
+     * Register any package services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        // register its dependencies
+        $this->app->register(\Backpack\Base\BaseServiceProvider::class);
     }
 }

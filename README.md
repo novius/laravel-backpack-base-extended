@@ -14,16 +14,13 @@ In your terminal:
 composer require novius/laravel-backpack-base-extended
 ```
 
-In `config/app.php`, replace
+Then, if you are on Laravel 5.4 (no need for Laravel 5.5 and higher), register the service provider to your `config/app.php` file:
 
 ```php
-Backpack\Base\BaseServiceProvider::class,
-```
-
-by
-
-```php
-Novius\Backpack\Base\BaseServiceProvider::class,
+'providers' => [
+    ...
+    Novius\Backpack\Base\BaseServiceProvider::class,
+];
 ```
 
 Launch these commands:
