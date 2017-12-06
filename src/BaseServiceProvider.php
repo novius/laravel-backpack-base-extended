@@ -52,6 +52,11 @@ class BaseServiceProvider extends ServiceProvider
          * Override Admin Middleware
          */
         $this->registerAdminMiddleware($this->app->router);
+
+        /*
+         * Override Routes
+         */
+        $this->setupRoutes($this->app->router);
     }
 
     public function registerAdminMiddleware(Router $router)
