@@ -13,6 +13,10 @@ In your terminal:
 ```sh
 composer require novius/laravel-backpack-base-extended
 ```
+* For backpack/base 1.0 use 0.5
+* For backpack/base 0.9 use 0.4
+* For backpack/base 0.8 use 0.3
+* For backpack/base 0.7 use 0.2
 
 Then, if you are on Laravel 5.4 (no need for Laravel 5.5 and higher), register the service provider to your `config/app.php` file:
 
